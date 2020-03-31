@@ -1,4 +1,5 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson2.task1
 
 import lesson1.task1.discriminant
@@ -62,7 +63,14 @@ fun minBiRoot(a: Double, b: Double, c: Double): Double {
  * Мой возраст. Для заданного 0 < n < 200, рассматриваемого как возраст человека,
  * вернуть строку вида: «21 год», «32 года», «12 лет».
  */
-fun ageDescription(age: Int): String = TODO()
+fun ageDescription(age: Int): String {
+    val x = age % 10
+    return if (age in 5..15) "$age лет"
+    else if (age in 100..115) "$age лет"
+    else if (x in 2..4) "$age года"
+    else if (x == 1) "$age год"
+    else "$age лет"
+}
 
 /**
  * Простая
@@ -73,7 +81,15 @@ fun ageDescription(age: Int): String = TODO()
  */
 fun timeForHalfWay(t1: Double, v1: Double,
                    t2: Double, v2: Double,
-                   t3: Double, v3: Double): Double = TODO()
+                   t3: Double, v3: Double): Double {
+    val a = t1 * v1
+    val b = t2 * v2
+    val c = t3 * v3
+    val halfWay = (a + b + c) / 2
+    return if (halfWay < a) halfWay / v1
+    else if (halfWay < a + b) t1 + (halfWay - a) / v2
+    else t1 + t2 + (halfWay - a - b) / v3
+}
 
 /**
  * Простая
@@ -120,4 +136,11 @@ fun triangleKind(a: Double, b: Double, c: Double): Int = TODO()
  * Найти длину пересечения отрезков AB и CD.
  * Если пересечения нет, вернуть -1.
  */
-fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int = TODO()
+fun segmentLength(a: Int, b: Int, c: Int, d: Int): Int {
+    return if (b < c) -1
+    else if (a > d) -1
+    else if ((a <= c) && (b >= c) && (b <= d)) b - c
+    else if ((a <= c) && (d <= b)) d - c
+    else if ((a >= c) && (b >= d)) d - a
+    else b - a
+}
