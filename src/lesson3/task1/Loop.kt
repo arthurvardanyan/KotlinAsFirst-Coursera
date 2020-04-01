@@ -1,6 +1,9 @@
 @file:Suppress("UNUSED_PARAMETER")
+
 package lesson3.task1
 
+import kotlin.math.max
+import kotlin.math.min
 import kotlin.math.sqrt
 
 /**
@@ -31,6 +34,7 @@ fun isPrime(n: Int): Boolean {
     return true
 }
 
+
 /**
  * Пример
  *
@@ -38,7 +42,7 @@ fun isPrime(n: Int): Boolean {
  */
 fun isPerfect(n: Int): Boolean {
     var sum = 1
-    for (m in 2..n/2) {
+    for (m in 2..n / 2) {
         if (n % m > 0) continue
         sum += m
         if (sum > n) break
@@ -74,18 +78,21 @@ fun digitNumber(n: Int): Int = TODO()
  * Найти число Фибоначчи из ряда 1, 1, 2, 3, 5, 8, 13, 21, ... с номером n.
  * Ряд Фибоначчи определён следующим образом: fib(1) = 1, fib(2) = 1, fib(n+2) = fib(n) + fib(n+1)
  */
-fun fib(n: Int): Int {
-    var result1 = 0
-    var result2 = 1
-    var result = 1
-    if (n == 1) return  result
-    else for (i in 2..n) {
-        result = result1 + result2
-        result1 = result2
-        result2 = result
-    }
-    return result
-}
+fun fib(n: Int): Int =
+        if (n <= 2) 1
+        else fib(n - 2) + fib(n - 1)
+/**   var result1 = 0
+ *    var result2 = 1
+ *    var result = 1
+ *    if (n == 1) return  result
+ *    else for (i in 2..n) {
+ *        result = result1 + result2
+ *        result1 = result2
+ *        result2 = result
+ *    }
+ *    return result
+ *}
+ */
 
 /**
  * Простая
@@ -93,7 +100,11 @@ fun fib(n: Int): Int {
  * Для заданных чисел m и n найти наименьшее общее кратное, то есть,
  * минимальное число k, которое делится и на m и на n без остатка
  */
-fun lcm(m: Int, n: Int): Int = TODO()
+fun lcm(m: Int, n: Int): Int {
+
+}
+
+
 
 /**
  * Простая
@@ -107,7 +118,17 @@ fun minDivisor(n: Int): Int = TODO()
  *
  * Для заданного числа n > 1 найти максимальный делитель, меньший n
  */
-fun maxDivisor(n: Int): Int = TODO()
+fun maxDivisor(n: Int): Int {
+    var maxDiv = 1
+    var i = 1
+    do {
+        if (n % i == 0) {
+            maxDiv = i
+        }
+        i = i + 1
+    } while (i <= n / 2)
+    return maxDiv
+}
 
 /**
  * Простая
@@ -117,6 +138,12 @@ fun maxDivisor(n: Int): Int = TODO()
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
 fun isCoPrime(m: Int, n: Int): Boolean = TODO()
+/**    var i = 1
+*    while (i <= m && i <= n) {
+*        if (n % i == 0 && m % i == 0) i = +
+*    }
+*}
+*/
 
 /**
  * Простая
@@ -202,6 +229,7 @@ fun hasDifferentDigits(n: Int): Boolean = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
+
 fun squareSequenceDigit(n: Int): Int = TODO()
 
 /**
@@ -213,4 +241,5 @@ fun squareSequenceDigit(n: Int): Int = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
+
 fun fibSequenceDigit(n: Int): Int = TODO()
