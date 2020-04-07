@@ -1,10 +1,11 @@
-@file:Suppress("UNUSED_PARAMETER")
+@file:Suppress("UNUSED_PARAMETER", "UNREACHABLE_CODE")
 
 package lesson3.task1
 
 import kotlin.math.max
 import kotlin.math.min
 import kotlin.math.sqrt
+import kotlin.math.pow
 
 /**
  * Пример
@@ -70,7 +71,15 @@ fun digitCountInNumber(n: Int, m: Int): Int =
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun digitNumber(n: Int): Int = TODO()
+fun digitNumber(n: Int): Int {
+    var count = 1
+    var number = n
+    while (number >= 10) {
+        number /= 10
+        count += 1
+    }
+    return count
+}
 
 /**
  * Простая
@@ -107,14 +116,12 @@ fun lcm(m: Int, n: Int): Int {
     if (l % k == 0) lcm = l
     else if (k == 2) lcm = m * n
     else {
-       while (lcm <= m * n) {
-           if ((lcm % m == 0) && (lcm % n == 0)) return lcm
-           else lcm = lcm + 1
-       }
+        while (lcm <= m * n) {
+            if ((lcm % m == 0) && (lcm % n == 0)) return lcm
+            else lcm = lcm + 1
+        }
         return lcm
     }
-
-
     return lcm
 }
 
@@ -210,7 +217,15 @@ fun cos(x: Double, eps: Double): Double = TODO()
  *
  * Использовать операции со строками в этой задаче запрещается.
  */
-fun revert(n: Int): Int = TODO()
+fun revert(n: Int): Int {
+    var number = n
+    var result = 0
+    do{
+        result = result * 10 + number % 10
+        number = number / 10
+    } while (number > 0)
+    return result
+    }
 
 /**
  * Средняя
