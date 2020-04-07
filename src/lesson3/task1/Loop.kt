@@ -101,9 +101,22 @@ fun fib(n: Int): Int =
  * минимальное число k, которое делится и на m и на n без остатка
  */
 fun lcm(m: Int, n: Int): Int {
+    val k = min(m, n)
+    val l = max(m, n)
+    var lcm = l
+    if (l % k == 0) lcm = l
+    else if (k == 2) lcm = m * n
+    else {
+       while (lcm <= m * n) {
+           if ((lcm % m == 0) && (lcm % n == 0)) return lcm
+           else lcm = lcm + 1
+       }
+        return lcm
+    }
 
+
+    return lcm
 }
-
 
 
 /**
@@ -139,11 +152,11 @@ fun maxDivisor(n: Int): Int {
  */
 fun isCoPrime(m: Int, n: Int): Boolean = TODO()
 /**    var i = 1
-*    while (i <= m && i <= n) {
-*        if (n % i == 0 && m % i == 0) i = +
-*    }
-*}
-*/
+ *    while (i <= m && i <= n) {
+ *        if (n % i == 0 && m % i == 0) i = +
+ *    }
+ *}
+ */
 
 /**
  * Простая
