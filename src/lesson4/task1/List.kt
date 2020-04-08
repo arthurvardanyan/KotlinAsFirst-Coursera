@@ -122,7 +122,12 @@ fun abs(v: List<Double>): Double = TODO()
  *
  * Рассчитать среднее арифметическое элементов списка list. Вернуть 0.0, если список пуст
  */
-fun mean(list: List<Double>): Double = TODO()
+fun mean(list: List<Double>): Double {
+    var result = 0.0
+    if (list.isEmpty()) return result
+    else  result = list.sum() / list.size
+    return result
+}
 
 /**
  * Средняя
@@ -132,7 +137,18 @@ fun mean(list: List<Double>): Double = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun center(list: MutableList<Double>): MutableList<Double> = TODO()
+fun center(list: MutableList<Double>): MutableList<Double> =
+        when {
+            list.isEmpty() -> list
+            else -> {
+                val mean = mean(list)
+                for (elCount in 0 until list.size) {
+                    list[elCount] -= mean
+                }
+                list
+            }
+        }
+
 
 /**
  * Средняя
@@ -163,7 +179,16 @@ fun polynom(p: List<Double>, x: Double): Double = TODO()
  *
  * Обратите внимание, что данная функция должна изменять содержание списка list, а не его копии.
  */
-fun accumulate(list: MutableList<Double>): MutableList<Double> = TODO()
+fun accumulate(list: MutableList<Double>): MutableList<Double> =
+        when {
+            list.isEmpty() -> list
+            else -> {
+                for (i in 1 until list.size - 1) {
+                    list[i] += list[i - 1]
+                }
+                list
+            }
+        }
 
 /**
  * Средняя
@@ -172,7 +197,20 @@ fun accumulate(list: MutableList<Double>): MutableList<Double> = TODO()
  * Результат разложения вернуть в виде списка множителей, например 75 -> (3, 5, 5).
  * Множители в списке должны располагаться по возрастанию.
  */
-fun factorize(n: Int): List<Int> = TODO()
+fun factorize(n: Int): List<Int> {
+    var m = n
+    var minDiv = 2
+    val list = mutableListOf<Int>()
+    while (m > 1) {
+        if (m % minDiv == 0) {
+            m /= minDiv
+            list.add(minDiv)
+        } else
+            minDiv ++
+    }
+    return list
+}
+
 
 /**
  * Сложная
@@ -181,7 +219,7 @@ fun factorize(n: Int): List<Int> = TODO()
  * Результат разложения вернуть в виде строки, например 75 -> 3*5*5
  * Множители в результирующей строке должны располагаться по возрастанию.
  */
-fun factorizeToString(n: Int): String = TODO()
+fun factorizeToString(n: Int): String = factorize(n).joinToString(separator = "*" )
 
 /**
  * Средняя

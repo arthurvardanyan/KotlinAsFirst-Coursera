@@ -131,7 +131,13 @@ fun lcm(m: Int, n: Int): Int {
  *
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
-fun minDivisor(n: Int): Int = TODO()
+fun minDivisor(n: Int): Int {
+    for (divisor in 2..Math.ceil(Math.sqrt(n.toDouble())).toInt()) {
+        if (n % divisor == 0)
+            return divisor
+    }
+    return n
+}
 
 /**
  * Простая
@@ -145,7 +151,7 @@ fun maxDivisor(n: Int): Int {
         if (n % i == 0) {
             maxDiv = i
         }
-        i = i + 1
+        i += 1
     } while (i <= n / 2)
     return maxDiv
 }
@@ -220,12 +226,12 @@ fun cos(x: Double, eps: Double): Double = TODO()
 fun revert(n: Int): Int {
     var number = n
     var result = 0
-    do{
+    do {
         result = result * 10 + number % 10
         number = number / 10
     } while (number > 0)
     return result
-    }
+}
 
 /**
  * Средняя
