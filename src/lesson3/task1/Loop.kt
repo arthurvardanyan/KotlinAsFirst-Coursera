@@ -132,9 +132,9 @@ fun lcm(m: Int, n: Int): Int {
  * Для заданного числа n > 1 найти минимальный делитель, превышающий 1
  */
 fun minDivisor(n: Int): Int {
-    for (divisor in 2..Math.ceil(Math.sqrt(n.toDouble())).toInt()) {
-        if (n % divisor == 0)
-            return divisor
+    for (i in 2..Math.ceil(Math.sqrt(n.toDouble())).toInt()) {
+        if (n % i == 0)
+            return i
     }
     return n
 }
@@ -163,13 +163,13 @@ fun maxDivisor(n: Int): Int {
  * Взаимно простые числа не имеют общих делителей, кроме 1.
  * Например, 25 и 49 взаимно простые, а 6 и 8 -- нет.
  */
-fun isCoPrime(m: Int, n: Int): Boolean = TODO()
-/**    var i = 1
- *    while (i <= m && i <= n) {
- *        if (n % i == 0 && m % i == 0) i = +
- *    }
- *}
- */
+fun isCoPrime(m: Int, n: Int): Boolean {
+    for (i in 2..min(m, n)) {
+        if (m % i == 0 && n % i == 0) return false
+    }
+    return true
+}
+
 
 /**
  * Простая
@@ -178,7 +178,12 @@ fun isCoPrime(m: Int, n: Int): Boolean = TODO()
  * то есть, существует ли такое целое k, что m <= k*k <= n.
  * Например, для интервала 21..28 21 <= 5*5 <= 28, а для интервала 51..61 квадрата не существует.
  */
-fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
+fun squareBetweenExists(m: Int, n: Int): Boolean {
+    for (i in m..n) {
+        if (sqrt(i.toDouble()) % 1 == 0.0) return true
+    }
+    return false
+}
 
 /**
  * Средняя
@@ -196,7 +201,16 @@ fun squareBetweenExists(m: Int, n: Int): Boolean = TODO()
  * Написать функцию, которая находит, сколько шагов требуется для
  * этого для какого-либо начального X > 0.
  */
-fun collatzSteps(x: Int): Int = TODO()
+fun collatzSteps(x: Int): Int {
+    var steps = 0
+    var m = x
+    while (m != 1) {
+        if (x % 2 == 0) m / 2
+        else m * 3 + 1
+        steps++
+    }
+    return steps
+}
 
 /**
  * Средняя
